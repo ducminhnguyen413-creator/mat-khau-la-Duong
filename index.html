@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="vi">
 <head>
 <meta charset="utf-8" />
@@ -11,118 +12,114 @@
     --accent-dark: #ff5e8a;
   }
 
-  * { box-sizing: border-box; font-family: "Inter", sans-serif; }
+* { box-sizing: border-box; font-family: "Inter", sans-serif; }
 
-  body {
-    margin: 0;
-    height: 100vh;
-    background: radial-gradient(circle at 30% 30%, #1a1035, #0b0618 80%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: #fff;
-  }
+body {
+margin: 0;
+height: 100vh;
+background: radial-gradient(circle at 30% 30%, #1a1035, #0b0618 80%);
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+color: #fff;
+}
 
- 
-  .card {
-    text-align: center;
-    padding: 28px 32px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
+.card {
+text-align: center;
+padding: 28px 32px;
+background: rgba(255, 255, 255, 0.05);
+border-radius: 16px;
+box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+transition: opacity 0.4s ease, transform 0.4s ease;
+}
 
-  input {
-    padding: 10px 14px;
-    border: none;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 16px;
-    outline: none;
-  }
+input {
+padding: 10px 14px;
+border: none;
+border-radius: 10px;
+background: rgba(255, 255, 255, 0.1);
+color: white;
+font-size: 16px;
+outline: none;
+}
 
-  button {
-    padding: 10px 16px;
-    margin-left: 8px;
-    border-radius: 10px;
-    border: none;
-    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  button:hover { transform: scale(1.05); }
+button {
+padding: 10px 16px;
+margin-left: 8px;
+border-radius: 10px;
+border: none;
+background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+color: #fff;
+font-weight: bold;
+cursor: pointer;
+transition: transform 0.2s ease;
+}
+button:hover { transform: scale(1.05); }
 
-  .shake { animation: shake 0.4s; }
-  @keyframes shake {
-    0%,100%{transform:translateX(0);}
-    25%{transform:translateX(-6px);}
-    50%{transform:translateX(6px);}
-    75%{transform:translateX(-3px);}
-  }
+.shake { animation: shake 0.4s; }
+@keyframes shake {
+0%,100%{transform:translateX(0);}
+25%{transform:translateX(-6px);}
+50%{transform:translateX(6px);}
+75%{transform:translateX(-3px);}
+}
 
- 
-  .scene {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle at 50% 40%, #260926, #09010c 80%);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s ease;
-  }
-  .scene.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
+.scene {
+position: fixed;
+inset: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background: radial-gradient(circle at 50% 40%, #260926, #09010c 80%);
+opacity: 0;
+pointer-events: none;
+transition: opacity 1s ease;
+}
+.scene.show {
+opacity: 1;
+pointer-events: auto;
+}
 
-  .heart-text {
-    font-family: 'Great Vibes', cursive;
-    font-size: 56px;
-    color: #fff;
-    text-shadow: 0 0 15px #ffb3c1, 0 0 35px #ff8fb7;
-    animation: glow 2s ease-in-out infinite;
-    margin-bottom: 10px;
-  }
-  @keyframes glow {
-    0%,100%{filter:brightness(1);}
-    50%{filter:brightness(1.3);}
-  }
+.heart-text {
+font-family: 'Great Vibes', cursive;
+font-size: 56px;
+color: #fff;
+text-shadow: 0 0 15px #ffb3c1, 0 0 35px #ff8fb7;
+animation: glow 2s ease-in-out infinite;
+margin-bottom: 10px;
+}
+@keyframes glow {
+0%,100%{filter:brightness(1);}
+50%{filter:brightness(1.3);}
+}
 
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-</style>
+canvas {
+position: absolute;
+top: 0;
+left: 0;
+} </style>
+
 </head>
 <body>
- 
   <div class="card" id="login">
     <h2>Nhập mật khẩu để truy cập kho dữ liệu 💗</h2>
     <input type="password" id="pw" placeholder="Mật khẩu..." />
     <button id="btn">Mở</button>
   </div>
 
- 
   <div class="scene" id="scene">
-    <div class="heart-text">Quỳnh Dương</div>
+    <div class="heart-text" id="heartText">Quỳnh Dương</div>
     <canvas id="heartCanvas"></canvas>
   </div>
 
 <script>
-const correctPassword = "Duong";
 const pwInput = document.getElementById("pw");
 const btn = document.getElementById("btn");
 const login = document.getElementById("login");
 const scene = document.getElementById("scene");
+const heartText = document.getElementById("heartText");
 const canvas = document.getElementById("heartCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -132,11 +129,21 @@ pwInput.addEventListener("keydown", e => {
 });
 
 function checkPassword() {
-  if (pwInput.value === correctPassword) {
+  const value = pwInput.value.trim();
+
+  if (value === "Duong" || value === "Nhi") {
     login.style.opacity = 0;
     setTimeout(() => {
       login.style.display = "none";
       scene.classList.add("show");
+
+      // Nếu mật khẩu là Nhi → đổi chữ thành “Chó 🐶”
+      if (value === "Nhi") {
+        heartText.textContent = "Chó 🐶";
+      } else {
+        heartText.textContent = "Quỳnh Dương";
+      }
+
       startHeart();
     }, 500);
   } else {
@@ -144,8 +151,6 @@ function checkPassword() {
     setTimeout(() => pwInput.classList.remove("shake"), 400);
   }
 }
-
-
 
 function startHeart() {
   resizeCanvas();
@@ -158,7 +163,6 @@ function startHeart() {
   const scale = Math.min(canvas.width, canvas.height) / 30;
 
   for (let i = 0; i < particleCount; i++) {
-    const angle = Math.random() * Math.PI * 2;
     const t = Math.random() * 2 * Math.PI;
     const x = 16 * Math.pow(Math.sin(t), 3);
     const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
@@ -213,5 +217,6 @@ function resizeCanvas() {
   canvas.height = window.innerHeight;
 }
 </script>
+
 </body>
 </html>
